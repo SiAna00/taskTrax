@@ -55,16 +55,19 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
+current_year = date.today().strftime("%Y")
+
+
 @app.route("/")
 def home():
-    return render_template("index.html", current_user=current_user)
+    return render_template("index.html", current_user=current_user, date=current_year)
 
 
 @app.route("/tasks")
 @login_required
 def show_tasks():
     tasks = db.session.execute(db.select(Task)).scalars().all()
-    return render_template("tasks.html", tasks=tasks, current_user=current_user)
+    return render_template("tasks.html", tasks=tasks, current_user=current_user, date=current_year)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -94,7 +97,7 @@ def register():
 
         return redirect("/tasks")
         
-    return render_template("register.html", form=register_form, current_user=current_user)
+    return render_template("register.html", form=register_form, current_user=current_user, date=current_year)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -113,11 +116,11 @@ def login():
                 return redirect("/tasks")
             
             flash("Incorrect password. Please try again.")
-            return render_template("login.html", form=login_form, current_user=current_user)
+            return render_template("login.html", form=login_form, current_user=current_user, date=current_year)
         
         return redirect("/register")
 
-    return render_template("login.html", form=login_form, current_user=current_user)
+    return render_template("login.html", form=login_form, current_user=current_user, date=current_year)
 
 
 @app.route("/logout")
@@ -154,7 +157,7 @@ def add_task():
         flash("Task added successfully.")
         return redirect("/tasks")
     
-    return render_template("add.html", form=add_form, current_user=current_user)
+    return render_template("add.html", form=add_form, current_user=current_user, date=current_year)
 
 
 
