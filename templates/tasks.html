@@ -1,7 +1,14 @@
 {% include "header.html" %}
         <div class="container my-5">
+            {% with message = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="flash">{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
             <div class="container">
-                <button class="btn btn-dark">Add New Task</button>
+                <button class="btn btn-dark"><a href="{{ url_for('add_task') }}">Add New Task</a></button>
             </div>
             
             <div class="container mt-2">
@@ -14,14 +21,16 @@
                         <th>Due</th>
                         <th>Status</th>
                     </tr>
+                    {% for task in tasks %}
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ task.id }}</td>
+                        <td>{{ task.task }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.created_date }}</td>
+                        <td>{{ task.due_date }}</td>
+                        <td>{{ task.status }}</td>
                     </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>

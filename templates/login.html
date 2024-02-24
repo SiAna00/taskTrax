@@ -1,0 +1,18 @@
+{% include "header.html" %}
+{% from "Bootstrap5/form.html" import render_form %}
+
+<div class="container mt-5">
+    <h3 class="my-5">Welcome back</h3>
+    <div class="row">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p class="flash">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+        <div class="col-md-8" style="width: 40%;">
+            {{ render_form(form, novalidate=True, button_map={"login_button":"dark"}) }}
+        </div>
+    </div>
+</div>
