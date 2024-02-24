@@ -19,12 +19,14 @@
                 <div class="col">
                     <h3>taskTrax</h3>
                 </div>
+                {% if current_user.is_authenticated %}
                 <div class="col">
                     <ul class="list-unstyled float-end">
-                        <li class="mx-2" style="display: inline;"><a href="{{ url_for('home') }}">Home</a></li>
-                        <li class="mx-2" style="display: inline;"><a href="{{ url_for('show_tasks') }}">Tasks</a></li>
-                        <li class="mx-2" style="display: inline;"><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        <li class="mx-2" style="display: inline;"><a href="{{ url_for('home') }}" class="link-dark link-offset-2 link-opacity-75-hover link-underline-opacity-75-hover">Home</a></li>
+                        <li class="mx-2" style="display: inline;"><a href="{{ url_for('show_tasks') }}" class="link-dark link-offset-2 link-opacity-75-hover link-underline-opacity-75-hover">Tasks</a></li>
+                        <li class="mx-2" style="display: inline;"><a href="{{ url_for('logout') }}" class="btn btn-outline-dark" role="button">Log Out</a></li>
                     </ul>
                 </div>
+                {% endif %}
             </div>            
         </div>
