@@ -1,0 +1,11 @@
+{% include "header.html" %}
+{% from "Bootstrap5/form.html" import render_form %}
+
+<div class="container mt-5">
+    <h3 class="my-5">Welcome to taskTrax</h3>
+    <div class="row">
+        <div class="col-md-8" style="width: 40%;">
+            {{ render_form(form, novalidate=True, button_map={"register_button":"dark"}) }}
+        </div>
+    </div>
+</div>
